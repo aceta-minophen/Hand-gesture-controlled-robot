@@ -40,7 +40,11 @@ void loop(void)
     Mastersend = x;
     Mastereceive = SPI.transfer(Mastersend); //Send the mastersend value to slave also receives value from slave
 
+    String values = String(Mastereceive, 2);
     //Serial.println(Mastereceive);
+    delay(300);
+
+    Serial.println(values);
 
     //delay(100);
 
@@ -54,7 +58,7 @@ void loop(void)
             //Serial.print(request);
             client.flush();
             //client.println("Hi client! No, I am listening.\r");
-            client.println(Mastereceive);
+            client.println(values);
             digitalWrite(ledPin, HIGH);
         }
         client.stop();

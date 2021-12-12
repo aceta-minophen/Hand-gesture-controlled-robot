@@ -202,20 +202,25 @@ void loop() {
     Serial.println(" ");*/
 
     if (received == true) {
-
-        if (Xaxis >= 0 && Xaxis <= 128) {
-            x = Xaxis;
-            Slavesend = x;
-            Serial.println(Slavesend);
-            SPDR = Slavesend;
-            //delay(100);
+        if (a == 0) {
+            if (Xaxis >= 0 && Xaxis <= 128) {
+                x = Xaxis;
+                Slavesend = x;
+                Serial.println(Slavesend);
+                SPDR = Slavesend;
+                delay(100);
+            }
+            a = 1;
         }
-        if (Yaxis > 128 && Yaxis <= 256) {
-            x = Yaxis;
-            Slavesend = x;
-            Serial.println(Slavesend);
-            SPDR = Slavesend;
-            //delay(100);
+        if (a == 1) {
+            if (Yaxis > 128 && Yaxis <= 256) {
+                x = Yaxis;
+                Slavesend = x;
+                Serial.println(Slavesend);
+                SPDR = Slavesend;
+                delay(100);
+            }
+            a = 0;
         }
     }
 }

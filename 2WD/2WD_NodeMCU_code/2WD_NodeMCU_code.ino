@@ -34,8 +34,9 @@ void loop() {
     Serial.println(".");
     client.println("Hello server! Are you sleeping?\r");  // sends the message to the server
     String answer = client.readStringUntil('\r');   // receives the answer from the sever
-    Serial.println("from server: " + answer);
+    //Serial.println("from server: " + answer);
+    Serial.println(answer);
     client.flush();
     digitalWrite(ledPin, HIGH);
-    delay(2000);                  // client will trigger the communication after two seconds
+    delay(100);                  // client will trigger the communication after two seconds
 }
