@@ -1,5 +1,6 @@
 #include <SPI.h>
 #include <ESP8266WiFi.h>
+#include <Wire.h>
 
 byte ledPin = 2;
 char ssid[] = "paya1";           // SSID of your home WiFi
@@ -18,6 +19,10 @@ void setup() {
         Serial.print(".");
         delay(500);
     }
+    Serial.println("");
+    Serial.println("WiFi connected");
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
     /*  Serial.println("Connected to wifi");
       Serial.print("Status: "); Serial.println(WiFi.status());    // Network parameters
       Serial.print("IP: ");     Serial.println(WiFi.localIP());
@@ -26,6 +31,8 @@ void setup() {
       Serial.print("SSID: "); Serial.println(WiFi.SSID());
       Serial.print("Signal: "); Serial.println(WiFi.RSSI());*/
     pinMode(ledPin, OUTPUT);
+    Wire.begin(D1, D2);
+
 }
 
 void loop() {
@@ -36,6 +43,17 @@ void loop() {
     String answer = client.readStringUntil('\r');   // receives the answer from the sever
     //Serial.println("from server: " + answer);
     Serial.println(answer);
+    
+    int val = answer.toInt();
+
+    byte buffer[10];
+    buffer[0] = lowByte(val);
+    buffer[1] = highByte(val);
+    
+    Wire.beginTransmission(8);
+    Wire.write(buffer, 2);
+    Wire.endTransmission();
+
     client.flush();
     digitalWrite(ledPin, HIGH);
     //delay(100);                  // client will trigger the communication after two seconds

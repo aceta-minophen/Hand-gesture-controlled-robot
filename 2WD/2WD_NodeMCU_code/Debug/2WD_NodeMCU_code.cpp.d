@@ -125,4 +125,5 @@ C:\Users\sukri\AppData\Local\Temp\VMBuilds\2WD_NodeMCU_code\esp8266_nodemcuv2\De
  C:\Users\sukri\Documents\Arduino\libraries\ESP8266WiFi\src/BearSSLHelpers.h \
  C:\Users\sukri\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\3.0.2\cores\esp8266/FS.h \
  C:\Users\sukri\Documents\Arduino\libraries\ESP8266WiFi\src/WiFiServerSecureBearSSL.h \
- C:\Users\sukri\Documents\Arduino\libraries\ESP8266WiFi\src/WiFiClientSecure.h
+ C:\Users\sukri\Documents\Arduino\libraries\ESP8266WiFi\src/WiFiClientSecure.h \
+ C:\Users\sukri\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\3.0.2\libraries\Wire/Wire.h

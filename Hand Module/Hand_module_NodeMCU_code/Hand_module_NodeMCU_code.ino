@@ -28,6 +28,10 @@ void setup(void) {
         Serial.print(".");
         delay(500);
     }
+    Serial.println("");
+    Serial.println("WiFi connected");
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
     server.begin();
     pinMode(ledPin, OUTPUT);
 }
@@ -67,7 +71,7 @@ void loop(void)
             client.flush();
             //client.println("Hi client! No, I am listening.\r");
             client.println(values);
-            digitalWrite(ledPin, HIGH);
+            //digitalWrite(ledPin, HIGH);
         }
         client.stop();
     }
