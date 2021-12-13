@@ -44,6 +44,14 @@ void loop(void)
     //Serial.println(Mastereceive);
     delay(300);
 
+    if (Mastereceive >= 0) {
+        digitalWrite(LED_BUILTIN, LOW);
+    }
+    else
+    {
+        digitalWrite(LED_BUILTIN, HIGH);
+    }
+
     Serial.println(values);
 
     //delay(100);

@@ -31,12 +31,12 @@ void setup() {
 void loop() {
     client.connect(server, 80);   // Connection to the server
     digitalWrite(ledPin, LOW);    // to show the communication only (inverted logic)
-    Serial.println(".");
+    //Serial.println(".");
     client.println("Hello server! Are you sleeping?\r");  // sends the message to the server
     String answer = client.readStringUntil('\r');   // receives the answer from the sever
     //Serial.println("from server: " + answer);
     Serial.println(answer);
     client.flush();
     digitalWrite(ledPin, HIGH);
-    delay(100);                  // client will trigger the communication after two seconds
+    //delay(100);                  // client will trigger the communication after two seconds
 }
