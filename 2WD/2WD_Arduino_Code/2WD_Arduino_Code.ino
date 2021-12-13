@@ -9,6 +9,15 @@ int motorRpin2 = 3;
 int speedL = 10;
 int speedR = 9;
 
+int x;
+int y;
+
+int pitch;
+int roll;
+
+int X;
+int Y;
+
 void setup() {
 	/*Motor Driver*/
 	pinMode(motorLpin1, OUTPUT);
@@ -29,6 +38,9 @@ void setup() {
 	Wire.onReceive(receiveEvent); /* register receive event */
 	Wire.onRequest(requestEvent); /* register request event */
 	Serial.begin(115200);           /* start serial for debug */
+
+	analogWrite(speedR, 0);
+	analogWrite(speedL, 0);
 }
 
 void loop() {
@@ -45,7 +57,48 @@ void receiveEvent(int howMany) {
 
 		Serial.println(val);
 
-		
+		if (val <= 128 && val>0) {
+			x = val;
+		}
+		else if (val > 128) {
+			y = val;
+		}
+
+		/*Serial.print("X: ");
+		Serial.print(x);
+		Serial.print("      ");
+		Serial.print("Y: ");
+		Serial.println(y);*/
+
+		pitch = x / 0.711;
+		roll = (y - 128) / 0.711;
+
+		X = 0.6 * pitch;
+		Y = 0.6 * roll;
+
+
+		if (roll >= 135) {
+			analogWrite(speedL, 0);
+			analogWrite(speedR, X);
+			Serial.println("Turning left");
+		}
+		else if (roll <= 45) {
+			analogWrite(speedR, 0);
+			analogWrite(speedL, X);
+			Serial.println("Turning right");
+		}
+		else {
+			analogWrite(speedL, X);
+			analogWrite(speedR, X);
+			Serial.println("Heading Straight");
+		}
+
+
+		Serial.print("Pitch: ");
+		Serial.print(X);
+		Serial.print("      ");
+		Serial.print("Roll: ");
+		Serial.println(Y);
 	}
 	Serial.println();             /* to newline */
 }

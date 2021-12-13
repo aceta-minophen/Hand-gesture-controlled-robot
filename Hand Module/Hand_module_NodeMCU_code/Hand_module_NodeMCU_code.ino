@@ -17,6 +17,7 @@ IPAddress subnet(255, 255, 255, 0);          // subnet mask of your network
 void setup(void) {
     Serial.begin(115200);                   //Starts Serial Communication at Baud Rate 115200 
 
+    pinMode(D1, INPUT);
 
     SPI.begin();                            //Begins the SPI commnuication
     SPI.setClockDivider(SPI_CLOCK_DIV8);    //Sets clock for SPI communication at 8 (16/8=2Mhz)
@@ -46,7 +47,7 @@ void loop(void)
 
     String values = String(Mastereceive, 2);
     //Serial.println(Mastereceive);
-    delay(300);
+    delay(50);
 
     if (Mastereceive >= 0) {
         digitalWrite(LED_BUILTIN, LOW);
@@ -71,7 +72,12 @@ void loop(void)
             client.flush();
             //client.println("Hi client! No, I am listening.\r");
             client.println(values);
-            //digitalWrite(ledPin, HIGH);
+            /*if (button == LOW) {
+                int a = 10000;
+                client.println(a);
+                Serial.println(a);
+            }*/
+            digitalWrite(ledPin, HIGH);
         }
         client.stop();
     }
