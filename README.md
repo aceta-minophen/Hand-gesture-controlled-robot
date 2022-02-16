@@ -1,4 +1,4 @@
-# Makeshift Gimbal Project
+# Hand Gesture Controlled Robot
 
 A small robot which works by monitoring the tilt of hands and moves as you want it to. It has applications in controlling quadcopters the same way as UGVs for security and surveillance purposes, along with medical applications which involves easy control and handling of wheelchairs.
 
